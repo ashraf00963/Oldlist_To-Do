@@ -1,0 +1,76 @@
+.register-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #00000091;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.register-content {
+    background: #fff;
+    color: #000;
+    padding: 30px;
+    border: 2px solid #000;
+    border-radius: 5px;
+    position: relative;
+    font-family: "Josefin Slab", serif;
+    width: 400px;
+}
+
+.register-content h2 {
+    margin: 0;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.register-input {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #6b656591;
+    font-family: "Josefin Sans", serif;
+    font-weight: 600;
+    background-color: #000;
+    color: #fff;
+}
+
+.register-sub-btn {
+    background-color: #000;
+    border: 1px solid #000;
+    color: #fff;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-family: "Josefin Slab", serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.register-sub-btn:hover,
+.register-sub-btn:focus {
+    background-color: #fff;
+    color: #000;
+}
+
+.register-input.Weak {
+    outline-color: #ff0000;
+}
+
+.register-input.Medium {
+    outline-color: #ffae00;
+}
+
+.register-input.Strong {
+    outline-color: #3cff00;
+}
