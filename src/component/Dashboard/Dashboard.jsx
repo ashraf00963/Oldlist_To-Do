@@ -21,7 +21,7 @@ function Dashboard() {
         console.log(userId)
         const getLists = async () => {
             try {
-                const response = await axios.get(`${URL}/users/${userId}/lists`);
+                const response = await axios.get(`${URL}/getLists.php`, userId);
                 setLists(response.data);
             } catch (error) {
                 setError(error.response.data || 'failed to fetch data from server');

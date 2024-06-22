@@ -44,7 +44,7 @@ function NewListPopup({ isOpen, onClose, setLists, lists, error, setError, userI
         };
 
         try {
-            await axios.post(`${URL}/users/${userId}/lists`, newList);
+            await axios.post(`${URL}/addList.php`, { userId, newList });
             setLists([...lists, newList]);
             setNewListName('');
         } catch (error) {

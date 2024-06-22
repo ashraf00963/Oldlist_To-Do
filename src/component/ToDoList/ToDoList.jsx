@@ -19,7 +19,7 @@ function ToDoList() {
     useEffect(() => {
         const getList = async () => {
             try {
-                const response = await axios.get(`${URL}/users/${userId}/lists/${listId}`);
+                const response = await axios.get(`${URL}/getList.php`, { userId, listId });
                 const { name, tasks } = response.data;
                 const taskCategorized = {
                     tasks: tasks.filter((task) => task.status === 'tasks'),

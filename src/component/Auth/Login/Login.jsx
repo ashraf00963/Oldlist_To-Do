@@ -47,7 +47,7 @@ function Login({ isOpen, onClose, onRegisterOpen }) {
 
         //try and catch blacks to fetch and confirm login
         try {
-            const response = await axios.post(`${URL}/login`, { username, password});
+            const response = await axios.post(`${URL}/login.php`, { username, password});
             setError(null);
             setLoggedIn(true);
             navigate('/dashboard');

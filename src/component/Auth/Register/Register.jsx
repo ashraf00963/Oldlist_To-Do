@@ -73,7 +73,7 @@ function Register({ isOpen, onClose}) {
 
         //try and catch blockes to post data to server using axios
         try {
-            const response = await axios.post(`${URL}/register`, { username, password});
+            const response = await axios.post(`${URL}/register.php`, { username, password});
             setError(null);
             alert('Registration successful!');
         } catch (error) {
