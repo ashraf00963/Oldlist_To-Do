@@ -44,7 +44,7 @@ function Dashboard() {
                     <button onClick={handleAddListPopup} className="add-list-btn">Create New List</button>
                 </div>
                 <div className="listoflists-lists">
-                    {lists.map((list) => (
+                    {Array.isArray(lists) && lists.map((list) => (
                         <div className="listoflists-list" key={list.id} onClick={() => navigate(`/list/${list.id}`)}>
                             {list.name}
                         </div>
