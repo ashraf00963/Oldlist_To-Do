@@ -7,16 +7,17 @@ function NewListPopup({ isOpen, onClose, setLists, lists, error, setError }) {
     const loginRef = useRef(null);
 
     const URL = 'https://list-todo.com';
-    const userId = localStorage.getItem('userId')
-    //useEffect handling click out side to close new list popup
+    const userId = localStorage.getItem('userId');
+    
+    //useEffect handling click outside to close new list popup
     useEffect(() => {
         const handleOutsideClick = (event) => {
-            if(loginRef.current && !loginRef.current.contains(event.target)) {
+            if (loginRef.current && !loginRef.current.contains(event.target)) {
                 onClose();
             }
         }
 
-        if(isOpen) {
+        if (isOpen) {
             document.addEventListener('mousedown', handleOutsideClick);
         } else {
             document.removeEventListener('mousedown', handleOutsideClick);
@@ -30,8 +31,10 @@ function NewListPopup({ isOpen, onClose, setLists, lists, error, setError }) {
     if (!isOpen) return null;
 
     //handle adding list to server and list array
-    const handleAddList = async () => {
-        if(!newListName) {
+    const handleAddList = async (e) => {
+        e.preventDefault();
+        
+        if (!newListName) {
             setError('List name can`t be empty');
             return;
         }
@@ -44,7 +47,7 @@ function NewListPopup({ isOpen, onClose, setLists, lists, error, setError }) {
         };
 
         try {
-            await axios.post(`${URL}/addList.php`, { userId, newList });
+            await axios.post(`${URL}/addList.php`, { user_id: userId, name: newListName });
             setLists([...lists, newList]);
             setNewListName('');
         } catch (error) {
