@@ -1,0 +1,116 @@
+/*task list styles */
+.tasklist-page {
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 4px 5px 3px #000;
+    background-color: #353434b9;
+    color: #fff;
+    height: fit-content;
+}
+
+.tasklist-content {
+    padding: 0.75rem;
+}
+
+.tasklist-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tasklist-header h3 {
+    margin: 0;
+    text-shadow: 0px 4px 4px #000;
+}
+
+.tasklist-popup-btn {
+    border: none;
+    background-color: transparent;
+    border-radius: 10px;
+    font-size: 34px;
+    font-family: "Josefin Sans", serif;
+    color: #fff;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.tasklist-popup-btn:hover {
+    color: #1a1919;
+}
+
+.task-container {
+    padding: 10px 20px;
+    margin: 1rem;
+    background-color: #000;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0px 2px 2px 2px #000;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.task-container:hover {
+    background-color: #fff;
+    color: #000;
+}
+/* addTask popup styles */
+.addtask-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000000a1;
+    z-index: 1;
+}
+
+.addtask-popup-content {
+    background-color: #fff;
+    padding: 30px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    font-family: "Josefin Slab", serif; 
+    width: 400px;
+}
+
+.addtask-popup-content h2 {
+    margin: 1rem 0;
+    text-align: center;
+    color: #000;
+}
+
+.addtask-popup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.addtask-popup-input {
+    font-family: "Josefin Sans", serif;
+    padding: 10px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    background-color: #000;
+    color: #fff;
+}
+
+.addtask-popup-btn {
+    padding: 5px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    font-family: "Josefin Sans", serif;
+    background-color: #fff;
+    color: #000;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.addtask-popup-btn:hover {
+    background-color: #000;
+    color: #fff;
+}

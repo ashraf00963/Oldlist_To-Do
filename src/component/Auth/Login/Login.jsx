@@ -1,6 +1,8 @@
-import axios from "axios";
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import './login.css';
+
 
 function Login({ isOpen, onClose, onRegisterOpen }) {
     const [username, setUsername] = useState('');
@@ -10,6 +12,7 @@ function Login({ isOpen, onClose, onRegisterOpen }) {
 
     const URL = 'http://localhost:3001';
     const loginRef = useRef(null);
+    const navigate = useNavigate();
 
     //useEffect handling click out side to close login popup
     useEffect(() => {
@@ -47,7 +50,8 @@ function Login({ isOpen, onClose, onRegisterOpen }) {
             const response = await axios.post(`${URL}/login`, { username, password});
             setError(null);
             setLoggedIn(true);
-            alert("Login successful");
+            navigate('/dashboard');
+            localStorage.setItem(response.id, userId);
         } catch (error) {
             setError(error.response.data.message || 'Login failed');
         }
@@ -56,7 +60,7 @@ function Login({ isOpen, onClose, onRegisterOpen }) {
     return (
         <div className="login-overlay">
             <div className="login-content" ref={loginRef}>
-                <h2>Login</h2>
+                <h2>{loggedIn ? 'Account' : 'Login'}</h2>
                 {error && <p className="error-p">{error}</p>}
                 {loggedIn ? ( 
                     <div>

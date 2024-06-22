@@ -1,0 +1,66 @@
+.dashboard {
+    padding: 2rem;
+    font-family: "Josefin Sans", serif;
+    background-image: url('../../assets/background2.webp');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100vh;
+}
+
+.dash-h1 {
+    color: #fff;
+    text-shadow: 0px 4px 4px #000;
+}
+
+.dashboard-listoflists {
+    background-color: #68676773;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px #000;
+}
+
+.listoflists-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.listoflists-header h2 {
+    color: #fff;
+    text-shadow: 0px 4px 4px #000;
+}
+
+.add-list-btn {
+    font-family: "Josefin Sans", serif;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #000;
+    color: #fff;
+    box-shadow: 2px 4px 4px #000;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.add-list-btn:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+.listoflists-list {
+    padding: 10px;
+    margin: 0.5rem 0;
+    background-color: #000;
+    border-radius: 5px;
+    color: #fff;
+    box-shadow: 0px 2px 4px #000;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.listoflists-list:hover {
+    background-color: #fff;
+    color: #000;
+}

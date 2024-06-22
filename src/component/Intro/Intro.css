@@ -1,7 +1,7 @@
 .intro-page {
     padding: 1rem 2rem;
     font-family: "Josefin Sans", serif;
-    background-image: url('../../assets/background.webp');
+    background-image: url('../../assets/background3.webp');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -55,7 +55,7 @@
 
 .intro-h2 {
     font-size: 4rem;
-    text-shadow: 0px 4px 4px #000;
+    text-shadow: 0px 8px 4px #000;
     margin: 0.5rem;
 }
 

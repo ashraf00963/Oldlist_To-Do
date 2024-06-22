@@ -1,0 +1,149 @@
+/* Task.css */
+
+@keyframes checkmark {
+    0% {
+        height: 0;
+        width: 0;
+        opacity: 1;
+    }
+    20% {
+        height: 0;
+        width: 8px;
+        opacity: 1;
+    }
+    40% {
+        height: 20px;
+        width: 8px;
+        opacity: 1;
+    }
+    100% {
+        height: 20px;
+        width: 8px;
+        opacity: 1;
+    }
+}
+
+@keyframes checkmark-stroke {
+    0% {
+        width: 0;
+        opacity: 1;
+    }
+    40% {
+        width: 0;
+        opacity: 1;
+    }
+    100% {
+        width: 16px;
+        opacity: 1;
+    }
+}
+
+.task-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Align items to the sides */
+    position: relative;
+    transition: opacity 0.2s ease;
+}
+
+.task-container.completed {
+    background-color: #000;
+    transition: all 0.3s;
+}
+
+.task-container.completed:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+.checkmark {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: inline-block;
+    stroke-width: 2;
+    stroke: #fff;
+    stroke-miterlimit: 10;
+    box-shadow: inset 0px 0px 0px green;
+    animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+}
+
+.checkmark__circle {
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    stroke-width: 2;
+    stroke-miterlimit: 10;
+    stroke: green;
+    fill: none;
+    animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.checkmark__check {
+    transform-origin: 50% 50%;
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+}
+
+@keyframes stroke {
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes scale {
+    0%, 100% {
+        transform: none;
+    }
+    50% {
+        transform: scale3d(1.1, 1.1, 1);
+    }
+}
+
+@keyframes fill {
+    100% {
+        box-shadow: inset 0px 0px 0px 30px green;
+    }
+}
+
+
+.dot-typing {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    background-color: transparent;
+}
+
+.dot-typing span {
+    display: block;
+    width: 6px;
+    height: 6px;
+    margin: 0 2px;
+    background: #ff9900;
+    border-radius: 100%;
+    opacity: 0;
+    animation: dotTyping 2s infinite;
+}
+
+.dot-typing span:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.dot-typing span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.dot-typing span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes dotTyping {
+    0%, 100% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+}

@@ -1,0 +1,21 @@
+.todolist-page {
+    padding: 2rem;
+    font-family: "Josefin Sans", serif;
+    background-image: url('../../assets/background.webp');
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+
+.lists-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+}
+
+.todolist-page h1 {
+    color: #fff;
+    text-shadow: 0px 4px 5px #000;
+}

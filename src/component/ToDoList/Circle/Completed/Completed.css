@@ -1,0 +1,14 @@
+.completed-page {
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 4px 5px 3px #000;
+    background-color: #353434b9;
+    color: #fff;
+    height: fit-content;
+    padding: 1rem;
+}
+
+.completed-page h3 {
+    margin: 0;
+    text-shadow: 0px 4px 4px #000;
+}
