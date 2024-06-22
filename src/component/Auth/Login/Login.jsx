@@ -10,7 +10,7 @@ function Login({ isOpen, onClose, onRegisterOpen }) {
     const [error, setError] = useState(null);
     const [loggedIn, setLoggedIn] = useState(false);
 
-    const URL = 'http://localhost:3001';
+    const URL = 'https://list-todo.com';
     const loginRef = useRef(null);
     const navigate = useNavigate();
 
