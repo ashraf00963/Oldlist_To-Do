@@ -51,7 +51,7 @@ function Login({ isOpen, onClose, onRegisterOpen }) {
             setError(null);
             setLoggedIn(true);
             navigate('/dashboard');
-            localStorage.setItem(response.id, userId);
+            localStorage.setItem('userId', response.data.id);
         } catch (error) {
             setError(error.response.data.message || 'Login failed');
         }
