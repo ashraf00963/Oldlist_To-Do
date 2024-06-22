@@ -11,7 +11,7 @@ function Dashboard() {
     const [isListPopupOpen, setIsListPopupOpen] = useState(false);
 
     const userId = localStorage.getItem('userId');
-    const URL = 'http://localhost:3001';
+    const URL = 'https://list-todo.com';
     const navigate = useNavigate();
 
 

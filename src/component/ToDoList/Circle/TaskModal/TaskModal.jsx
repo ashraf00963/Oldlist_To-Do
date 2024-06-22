@@ -13,7 +13,7 @@ function TaskModal({ task, isOpen, onClose }) {
                 {task.attachments && task.attachments.length > 0 ? (
                     <ul>
                         {task.attachments.map((attachment, index) => (
-                            <li key={index}><a href={`http://localhost:3001/uploads/${attachment}`} target="_blank" rel="noopener noreferrer">{attachment}</a></li>
+                            <li key={index}><a href={`https://list-todo.com/uploads/${attachment}`} target="_blank" rel="noopener noreferrer">{attachment}</a></li>
                         ))}
                     </ul>
                 ) : (

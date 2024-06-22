@@ -6,7 +6,7 @@ function NewListPopup({ isOpen, onClose, setLists, lists, error, setError, userI
     const [newListName, setNewListName] = useState('');
     const loginRef = useRef(null);
 
-    const URL = 'http://localhost:3001';
+    const URL = 'https://list-todo.com';
 
     //useEffect handling click out side to close new list popup
     useEffect(() => {
