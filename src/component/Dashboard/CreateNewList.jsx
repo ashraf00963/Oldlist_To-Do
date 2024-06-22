@@ -2,12 +2,12 @@ import { useRef, useState, useEffect } from "react";
 import axios from "axios";
 import './CreateNewList.css';
 
-function NewListPopup({ isOpen, onClose, setLists, lists, error, setError, userId }) {
+function NewListPopup({ isOpen, onClose, setLists, lists, error, setError }) {
     const [newListName, setNewListName] = useState('');
     const loginRef = useRef(null);
 
     const URL = 'https://list-todo.com';
-
+    const userId = localStorage.getItem('userId')
     //useEffect handling click out side to close new list popup
     useEffect(() => {
         const handleOutsideClick = (event) => {

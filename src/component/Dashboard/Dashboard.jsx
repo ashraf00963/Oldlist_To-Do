@@ -57,7 +57,6 @@ function Dashboard() {
                     lists={lists}
                     error={error}
                     setError={setError}
-                    userId={userId}
                 />
              </div>   
         </div>
