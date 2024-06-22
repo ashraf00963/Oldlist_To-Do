@@ -11,7 +11,7 @@ function Dashboard() {
     const [isListPopupOpen, setIsListPopupOpen] = useState(false);
 
     const userId = localStorage.getItem('userId');
-    const URL = 'https://list-todo.com:3001';
+    const URL = 'https://list-todo.com';
     const navigate = useNavigate();
 
 
@@ -44,7 +44,7 @@ function Dashboard() {
                     <button onClick={handleAddListPopup} className="add-list-btn">Create New List</button>
                 </div>
                 <div className="listoflists-lists">
-                    {Array.isArray(lists) && lists.map((list) => (
+                    {lists.map((list) => (
                         <div className="listoflists-list" key={list.id} onClick={() => navigate(`/list/${list.id}`)}>
                             {list.name}
                         </div>

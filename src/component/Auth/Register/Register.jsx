@@ -9,7 +9,7 @@ function Register({ isOpen, onClose}) {
     const [strength, SetStrength] = useState('');
     const [error, setError] = useState(null);
     
-    const URL = 'https://list-todo.com:3001';
+    const URL = 'https://list-todo.com';
     const loginRef = useRef(null);
 
     //useEffect handling click out side to close login popup
