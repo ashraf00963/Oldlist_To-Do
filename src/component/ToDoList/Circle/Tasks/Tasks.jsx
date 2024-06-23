@@ -11,7 +11,7 @@ function TasksList({ tasks, moveTask, addTask }) {
 
     const [, drop] = useDrop(() => ({
         accept: 'TASK',
-        drop: (item) => moveTask(item.id, item.status, 'tasks'),
+        drop: (item) => moveTask(item.id, item.status, 'tasks', item.index),
     }), [moveTask]);
 
     const handleTaskAdding = (e) => {
@@ -51,8 +51,8 @@ function TasksList({ tasks, moveTask, addTask }) {
                     <h3>Tasks</h3>
                     <button className='tasklist-popup-btn' onClick={() => setIsAddTaskPopupOpen(true)}>+</button>
                 </div>
-                {tasks.map((task) => (
-                    <Task key={task.id} task={task} />
+                {tasks.map((task, index) => (
+                    <Task key={task.id} task={task} index={index} moveTask={moveTask} />
                 ))}
             </div>
             {isAddTaskPopupOpen &&

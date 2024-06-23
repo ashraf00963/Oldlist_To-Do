@@ -71,12 +71,11 @@ function ToDoList() {
             }));
             setError(null);
         } catch (error) {
-            console.error('Delete error:', error);
             setError(error.response?.data || 'Failed to delete task');
         }
     };
 
-    const moveTask = async (taskId, sourceStatus, targetStatus) => {
+    const moveTask = async (taskId, sourceStatus, targetStatus, targetIndex) => {
         const taskToMove = tasks[sourceStatus].find(task => task.id === taskId);
         const updatedTask = { ...taskToMove, status: targetStatus };
 
@@ -85,7 +84,12 @@ function ToDoList() {
             setTasks((prevTasks) => {
                 const newState = { ...prevTasks };
                 newState[sourceStatus] = newState[sourceStatus].filter(task => task.id !== taskId);
-                newState[targetStatus] = [...newState[targetStatus], updatedTask];
+                if (sourceStatus === targetStatus) {
+                    newState[targetStatus].splice(targetIndex, 0, updatedTask);
+                } else {
+                    newState[targetStatus] = [...newState[targetStatus], updatedTask];
+                }
+                
                 return newState;
             });
             setError(null);
