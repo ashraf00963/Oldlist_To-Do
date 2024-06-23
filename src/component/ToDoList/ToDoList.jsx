@@ -80,7 +80,7 @@ function ToDoList() {
         const updatedTask = { ...taskToMove, status: targetStatus };
 
         try {
-            await axios.put(`${URL}/updateTask.php`, updatedTask);
+            await axios.put(`${URL}/updateTask.php`, { id: taskId, name: updatedTask.name, status: updatedTask.status, note: updatedTask.note });
             setTasks((prevTasks) => {
                 const newState = { ...prevTasks };
                 newState[sourceStatus] = newState[sourceStatus].filter(task => task.id !== taskId);
