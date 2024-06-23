@@ -30,9 +30,13 @@ function TasksList({ tasks, moveTask, addTask }) {
     };
 
     const handleAttachmentChange = (e) => {
-        const files = Array.from(e.target.value);
-        setAttachments(files);
-    }
+        const files = Array.from(e.target.files);
+        const fileAttachments = files.map(file => ({
+            name: file.name,
+            url: URL.createObjectURL(file)
+        }));
+        setAttachments(fileAttachments);
+    }    
 
     useEffect(() => {
         const handleOutsideClick = (event) => {
