@@ -9,6 +9,7 @@
     justify-content: center;
     align-items: center;
     color: #000;
+    z-index: 1;
 }
 
 .modal-content {
@@ -36,14 +37,5 @@
     padding: 5px;
     background-color: #000;
     color: #fff;
-}
-
-.attachments {
-    border: 1px solid #2e2e2e;
-    padding: 10px;
-    text-align: center;
-}
-
-.attach-p {
-    text-align: center;
+    font-family: "Josefin Sans", serif;
 }

@@ -7,7 +7,6 @@ function TasksList({ tasks, moveTask, addTask }) {
     const [isAddTaskPopupOpen, setIsAddTaskPopupOpen] = useState(false);
     const [newTask, setNewTask] = useState('');
     const [note, setNote] = useState('');
-    const [attachments, setAttachments] = useState([]);
     const loginRef = useRef(null);
 
     const [, drop] = useDrop(() => ({
@@ -19,24 +18,13 @@ function TasksList({ tasks, moveTask, addTask }) {
         e.preventDefault();
         const task = {
             name: newTask,
-            note,
-            attachments
+            note
         };
         addTask(task);
         setNewTask('');
         setNote('');
-        setAttachments([]);
         setIsAddTaskPopupOpen(false);
     };
-
-    const handleAttachmentChange = (e) => {
-        const files = Array.from(e.target.files);
-        const fileAttachments = files.map(file => ({
-            name: file.name,
-            url: URL.createObjectURL(file)
-        }));
-        setAttachments(fileAttachments);
-    }    
 
     useEffect(() => {
         const handleOutsideClick = (event) => {
@@ -87,12 +75,6 @@ function TasksList({ tasks, moveTask, addTask }) {
                                 onChange={(e) => setNote(e.target.value)}
                                 placeholder='Notes'
                                 required
-                            />
-                            <input 
-                                type='file'
-                                multiple
-                                className='addtask-popup-input'
-                                onChange={handleAttachmentChange}
                             />
                             <button type='submit' className='addtask-popup-btn'>Create Task</button>
                         </form>

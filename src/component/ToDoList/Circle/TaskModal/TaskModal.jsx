@@ -1,25 +1,34 @@
-import React from 'react';
+import { useRef, useEffect } from 'react';
 import './TaskModal.css';
 
-function TaskModal({ task, isOpen }) {
+function TaskModal({ task, isOpen, onClose }) {
+    const modalRef = useRef(null);
+
+    useEffect(() => {
+        const handleOutsideClick = (event) => {
+            if (modalRef.current && !modalRef.current.contains(event.target)) {
+                onClose();
+            }
+        };
+
+        if (isOpen) {
+            document.addEventListener('mousedown', handleOutsideClick);
+        } else {
+            document.removeEventListener('mousedown', handleOutsideClick);
+        }
+
+        return () => {
+            document.removeEventListener('mousedown', handleOutsideClick);
+        };
+    }, [isOpen, onClose]);
+
     if (!isOpen) return null;
 
     return (
         <div className="modal-overlay">
-            <div className="modal-content">
+            <div className="modal-content" ref={modalRef}>
                 <h2>{task.name}</h2>
                 <textarea value={task.note} readOnly placeholder="No notes available"></textarea>
-                <div className='attachments'>
-                    {task.attachments && task.attachments.length > 0 ? (
-                        task.attachments.map((attachment, index) => (
-                            <div key={index}>
-                                <a href={attachment.url} target="_blank" rel="noopener noreferrer">{attachment.name}</a>
-                            </div> 
-                        ))
-                    ) : (
-                        <p className='attach-p'>No attachments</p>
-                    )}
-                </div>
             </div>
         </div>
     );
