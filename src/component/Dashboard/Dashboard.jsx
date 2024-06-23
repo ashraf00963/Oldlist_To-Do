@@ -23,7 +23,7 @@ function Dashboard() {
             try {
                 const response = await axios.get(`${URL}/getLists.php`, {
                     params: {
-                        userId: userId
+                        user_id: userId
                     }
                 });
                 setLists(response.data);
