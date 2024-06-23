@@ -78,9 +78,15 @@ function ToDoList() {
     const moveTask = async (taskId, sourceStatus, targetStatus, targetIndex) => {
         const taskToMove = tasks[sourceStatus].find(task => task.id === taskId);
         const updatedTask = { ...taskToMove, status: targetStatus };
-
+    
         try {
-            await axios.put(`${URL}/updateTask.php`, { id: taskId, name: updatedTask.name, status: updatedTask.status, note: updatedTask.note });
+            await axios.put(`${URL}/updateTask.php`, {
+                id: taskId,
+                name: updatedTask.name,
+                status: updatedTask.status,
+                note: updatedTask.note
+            });
+    
             setTasks((prevTasks) => {
                 const newState = { ...prevTasks };
                 newState[sourceStatus] = newState[sourceStatus].filter(task => task.id !== taskId);
@@ -89,14 +95,14 @@ function ToDoList() {
                 } else {
                     newState[targetStatus] = [...newState[targetStatus], updatedTask];
                 }
-                
+    
                 return newState;
             });
             setError(null);
         } catch (error) {
             setError(error.response?.data || 'Failed to update task status');
         }
-    };
+    };    
 
     const updateTask = async (taskId, updatedTask) => {
         try {
