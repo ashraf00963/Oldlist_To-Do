@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import './login.css';
+import LoadingSpinner from "../../LoadingSpinner/LoadingSpinner";
 
 
 function Login({ isOpen, onClose, onRegisterOpen }) {
@@ -9,6 +10,7 @@ function Login({ isOpen, onClose, onRegisterOpen }) {
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
     const [loggedIn, setLoggedIn] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const URL = 'https://list-todo.com';
     const loginRef = useRef(null);
@@ -45,6 +47,8 @@ function Login({ isOpen, onClose, onRegisterOpen }) {
             return;
         }
 
+        setLoading(true);
+
         //try and catch blacks to fetch and confirm login
         try {
             const response = await axios.post(`${URL}/login.php`, { username, password});
@@ -54,6 +58,8 @@ function Login({ isOpen, onClose, onRegisterOpen }) {
             localStorage.setItem('userId', response.data.id);
         } catch (error) {
             setError(error.response.data.message || 'Login failed');
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -84,7 +90,9 @@ function Login({ isOpen, onClose, onRegisterOpen }) {
                             placeholder="Password"
                             required
                         />
-                        <button className="login-sub-btn" type="submit">Sign in</button>
+                        <button className="login-sub-btn" type="submit">
+                            {loading ? <LoadingSpinner /> : 'Sign in'}
+                        </button>
                         <p className="reg-p" onClick={onRegisterOpen}>Create new account</p>
                     </form>
                 )}

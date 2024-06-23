@@ -1,13 +1,15 @@
 import { useEffect, useRef, useState } from "react";
+import LoadingSpinner from "../../LoadingSpinner/LoadingSpinner";
 import axios from 'axios';
 import './Register.css';
 
-function Register({ isOpen, onClose}) {
+function Register({ isOpen, onClose, onLoginOpen }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPass, setConfirmPass] = useState('');
     const [strength, SetStrength] = useState('');
     const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
     
     const URL = 'https://list-todo.com';
     const loginRef = useRef(null);
@@ -46,6 +48,16 @@ function Register({ isOpen, onClose}) {
         return strength;
     }
 
+    //when register is successful than after 2 secs open login popup
+    const handleOpenLogin = () => {
+        const timer = setTimeout(() => {
+            onLoginOpen();
+        }, 2000);
+
+        //Clean up the timer if the component unmounts
+        return () => clearTimeout(timer);
+    }
+
     //handling the submition
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -71,13 +83,17 @@ function Register({ isOpen, onClose}) {
             return;
         }
 
+        setLoading(true);
+
         //try and catch blockes to post data to server using axios
         try {
             const response = await axios.post(`${URL}/register.php`, { username, password});
-            setError(null);
-            alert('Registration successful!');
+            setError('Registration successful!');
+            handleOpenLogin();
         } catch (error) {
             setError(error.response.data.message || "Registration failed");
+        } finally {
+            setLoading(false);
         }
     }
     //handle password strength on password input change
@@ -117,7 +133,9 @@ function Register({ isOpen, onClose}) {
                         placeholder="Confirm password"
                         required
                     />
-                    <button className="register-sub-btn" type="submit">Sign up</button>
+                    <button className="register-sub-btn" type="submit" disabled={loading}>
+                        {loading ? <LoadingSpinner /> : 'Sign up'}
+                    </button>
                 </form>
             </div>
         </div>

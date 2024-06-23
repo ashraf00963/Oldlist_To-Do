@@ -41,6 +41,7 @@ function Intro() {
                 <Register
                     isOpen={isRegisterPopupOpen}
                     onClose={() => setIsRegisterPopupOpen(false)}
+                    onLoginOpen={handleLoginPopup}
                 />
             </div>
         </div>
