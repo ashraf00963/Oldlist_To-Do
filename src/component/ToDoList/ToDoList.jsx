@@ -19,7 +19,7 @@ function ToDoList() {
     useEffect(() => {
         const getList = async () => {
             try {
-                const response = await axios.get(`${URL}/getList.php`, {
+                const response = await axios.get(`${URL}/getLists.php`, {
                     params: {
                         userId: userId,
                         listId: listId
