@@ -49,7 +49,7 @@ function ToDoList() {
         }
 
         try {
-            const task = { id: uuidv4(), ...newTask, status: 'tasks' };
+            const task = { id: uuidv4(), ...newTask, list_id: listId, status: 'tasks' };
             const response = await axios.post(`${URL}/addTask.php`, task);
             setTasks((prevTasks) => ({
                 ...prevTasks,
