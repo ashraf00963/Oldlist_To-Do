@@ -68,7 +68,7 @@ function Register({ isOpen, onClose, onLoginOpen }) {
             return;
         }
 
-        //confirm if password and confirm password are equal
+        //confirm if password and confirm passwords are equal
         if(password !== confirmPass) {
             setError('Passwords do not match');
             return;
@@ -96,6 +96,7 @@ function Register({ isOpen, onClose, onLoginOpen }) {
             setLoading(false);
         }
     }
+    
     //handle password strength on password input change
     const handlePasswordChange = (e) => {
         const newPassword = e.target.value;

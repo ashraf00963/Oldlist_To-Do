@@ -119,16 +119,22 @@
     transition: all 0.3s;
 }
 
-.confirm-delete-content button:hover {
-    background-color: #000;
-    color: #fff;
-}
-
 .confirm-delete-content button:first-of-type {
     background-color: #b80101;
     color: #fff;
+    transition: all 0.3s;
 }
 
 .confirm-delete-content button:last-of-type {
     background-color: #ccc;
+    color: #000;
+    transition: all 0.3s;
+}
+
+.confirm-delete-content button:first-of-type:hover {
+    background-color: #440000;
+}
+
+.confirm-delete-content button:last-of-type:hover {
+    background-color: #6b6b6b;
 }

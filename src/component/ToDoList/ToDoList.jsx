@@ -19,6 +19,7 @@ function ToDoList() {
 
     const isDragging = CustomDragLayer();
 
+    // fetches specific list from server with lists id
     useEffect(() => {
         const getList = async () => {
             try {
@@ -47,6 +48,7 @@ function ToDoList() {
         getList();
     }, [userId, listId, URL]);
 
+    // addes tasks to the specific list
     const handleAddTask = async (newTask) => {
         if (!newTask.name) {
             setError('Task cannot be empty');
@@ -66,6 +68,7 @@ function ToDoList() {
         }
     };
 
+    // Deletes task from the specific list
     const handleDeleteTask = async (taskId, status) => {
         console.log('Deleting task ID:', taskId);
         try {
@@ -80,6 +83,7 @@ function ToDoList() {
         }
     };
 
+    // moves tasks either in same part of list like Tasks or to diffrent part like in progress
     const moveTask = async (taskId, sourceStatus, targetStatus, targetIndex) => {
         const taskToMove = tasks[sourceStatus].find(task => task.id === taskId);
         const updatedTask = { ...taskToMove, status: targetStatus };
@@ -113,6 +117,7 @@ function ToDoList() {
         }
     };    
 
+    // updates task state
     const updateTask = async (taskId, updatedTask) => {
         try {
             await axios.put(`${URL}/updateTask.php`, updatedTask);

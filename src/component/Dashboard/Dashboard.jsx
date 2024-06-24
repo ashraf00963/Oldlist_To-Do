@@ -38,10 +38,12 @@ function Dashboard() {
         getLists();
     }, [userId, URL]);
 
+    // handles state of popup
     const handleAddListPopup = () => {
         setIsListPopupOpen(true);
     }
 
+    // Deletes a list 
     const handleDeleteList = async () => {
         setLoading(true);
         try {

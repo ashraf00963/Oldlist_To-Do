@@ -9,6 +9,7 @@ function TasksList({ tasks, moveTask, addTask }) {
     const [note, setNote] = useState('');
     const loginRef = useRef(null);
 
+    // handles drop func
     const [, drop] = useDrop(() => ({
         accept: 'TASK',
         drop: (item) => moveTask(item.id, item.status, 'tasks'),
@@ -26,6 +27,7 @@ function TasksList({ tasks, moveTask, addTask }) {
         setIsAddTaskPopupOpen(false);
     };
 
+    // handles the click out side to close popup
     useEffect(() => {
         const handleOutsideClick = (event) => {
             if (loginRef.current && !loginRef.current.contains(event.target)) {

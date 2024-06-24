@@ -4,6 +4,7 @@ import TaskModal from './TaskModal/TaskModal';
 import './Task.css';
 
 function Task({ task }) {
+    // Handles Drag Task
     const [{ isDragging }, drag] = useDrag(() => ({
         type: 'TASK',
         item: { id: task.id, status: task.status },
@@ -14,6 +15,7 @@ function Task({ task }) {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
+    // handles state of modal 
     const handleOpenModal = () => {
         setIsModalOpen(true);
     };
