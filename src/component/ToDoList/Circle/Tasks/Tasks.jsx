@@ -9,12 +9,10 @@ function TasksList({ tasks, moveTask, addTask }) {
     const [note, setNote] = useState('');
     const loginRef = useRef(null);
 
-    const [, drop] = useDrop({
+    const [, drop] = useDrop(() => ({
         accept: 'TASK',
-        drop: (item, monitor) => {
-            moveTask(item.id, item.status, 'tasks');
-        }
-    });
+        drop: (item) => moveTask(item.id, item.status, 'tasks'),
+    }), [moveTask]);
 
     const handleTaskAdding = (e) => {
         e.preventDefault();
@@ -53,8 +51,8 @@ function TasksList({ tasks, moveTask, addTask }) {
                     <h3>Tasks</h3>
                     <button className='tasklist-popup-btn' onClick={() => setIsAddTaskPopupOpen(true)}>+</button>
                 </div>
-                {tasks.map((task, index) => (
-                    <Task key={task.id} task={task} index={index} moveTask={moveTask} />
+                {tasks.map((task) => (
+                    <Task key={task.id} task={task} />
                 ))}
             </div>
             {isAddTaskPopupOpen &&

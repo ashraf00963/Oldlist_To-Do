@@ -1,51 +1,16 @@
-import { useDrag, useDrop } from 'react-dnd';
-import { useState, useRef } from 'react';
+import { useDrag } from 'react-dnd';
+import { useState } from 'react';
 import TaskModal from './TaskModal/TaskModal';
 import './Task.css';
 
-function Task({ task, index, moveTask }) {
-    const ref = useRef(null);
-
-    const [, drop] = useDrop({
-        accept: 'TASK',
-        hover(item, monitor) {
-            if (!ref.current) {
-                return;
-            }
-            const dragIndex = item.index;
-            const hoverIndex = index;
-
-            if (dragIndex === hoverIndex) {
-                return;
-            }
-
-            const hoverBoundingRect = ref.current.getBoundingClientRect();
-            const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
-            const clientOffset = monitor.getClientOffset();
-            const hoverClientY = clientOffset.y - hoverBoundingRect.top;
-
-            if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
-                return;
-            }
-
-            if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
-                return;
-            }
-
-            moveTask(item.id, item.status, item.status, hoverIndex);
-            item.index = hoverIndex;
-        },
-    });
-
-    const [{ isDragging }, drag] = useDrag({
+function Task({ task }) {
+    const [{ isDragging }, drag] = useDrag(() => ({
         type: 'TASK',
-        item: { id: task.id, index, status: task.status },
+        item: { id: task.id, status: task.status },
         collect: (monitor) => ({
             isDragging: monitor.isDragging(),
         }),
-    });
-
-    drag(drop(ref));
+    }), [task]);
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -61,7 +26,7 @@ function Task({ task, index, moveTask }) {
         <>
             <div
                 className={`task-container ${task.status === 'completed' ? 'completed' : ''}`}
-                ref={ref}
+                ref={drag}
                 style={{ opacity: isDragging ? 0.5 : 1 }}
                 onClick={handleOpenModal}
             >
