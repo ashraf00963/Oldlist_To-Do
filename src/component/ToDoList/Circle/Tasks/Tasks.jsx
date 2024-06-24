@@ -9,10 +9,12 @@ function TasksList({ tasks, moveTask, addTask }) {
     const [note, setNote] = useState('');
     const loginRef = useRef(null);
 
-    const [, drop] = useDrop(() => ({
+    const [, drop] = useDrop({
         accept: 'TASK',
-        drop: (item) => moveTask(item.id, item.status, 'tasks', item.index),
-    }), [moveTask]);
+        drop: (item, monitor) => {
+            moveTask(item.id, item.status, 'tasks');
+        }
+    });
 
     const handleTaskAdding = (e) => {
         e.preventDefault();
