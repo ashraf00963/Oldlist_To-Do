@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { TasksList, InProgressList, CompletedList, GarbageBin, CustomDragLayer } from './Circle';
 import './ToDoList.css';
 import Loading from "../LoadingSpinner/Loading";
+import backgroundVid from '../../assets/backgroundVid';
 
 function ToDoList() {
     const { listId } = useParams();
@@ -136,6 +137,10 @@ function ToDoList() {
 
     return (
         <div className="todolist-page">
+            <video autoPlay muted loop className="Video-background">
+                <source src={backgroundVid} type="video/mp4" />
+                Your browser does not support the video.
+            </video>
             {loading && <Loading />}
             {movingTask && <Loading />}
             <h1>{listName}</h1>
