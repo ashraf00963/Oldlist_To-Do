@@ -53,6 +53,7 @@ function NewListPopup({ isOpen, onClose, setLists, lists, error, setError }) {
             const response = await axios.post(`${URL}/addList.php`, { user_id: userId, list_id: listId, name: newListName });
             setLists([...lists, response.data]);
             setNewListName('');
+            onClose();
         } catch (error) {
             setError(error.response?.data || 'failed to add list to server');
         }

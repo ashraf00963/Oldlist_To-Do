@@ -6,7 +6,6 @@ import { FaTrash } from 'react-icons/fa';
 import axios from "axios";
 import './Dashboard.css';
 
-
 function Dashboard() {
     const [lists, setLists] = useState([]);
     const [error, setError] = useState(null);
@@ -19,8 +18,7 @@ function Dashboard() {
     const URL = 'https://list-todo.com';
     const navigate = useNavigate();
 
-
-    //fetching user lists on mount
+    // Fetching user lists on mount
     useEffect(() => {
         const getLists = async () => {
             setLoading(true);
@@ -36,7 +34,7 @@ function Dashboard() {
             } finally {
                 setLoading(false);
             }
-        } 
+        }
         getLists();
     }, [userId, URL]);
 
@@ -71,10 +69,17 @@ function Dashboard() {
                     {lists.map((list) => (
                         <div className="listoflists-list" key={list.id} onClick={() => navigate(`/list/${list.id}`)}>
                             <span>{list.name}</span>
-                            <FaTrash className="delete-icon" onClick={(e) => {e.stopPropagation(); setListToDelete(list.id); setIsDeletePopupOpen(true); }} />
+                            <FaTrash
+                                className="delete-icon"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    setListToDelete(list.id);
+                                    setIsDeletePopupOpen(true);
+                                }}
+                            />
                         </div>
-                    ))}    
-                </div>    
+                    ))}
+                </div>
                 <NewListPopup
                     isOpen={isListPopupOpen}
                     onClose={() => setIsListPopupOpen(false)}
@@ -86,16 +91,15 @@ function Dashboard() {
                 {isDeletePopupOpen && 
                     <div className="confirm-delete-overlay">
                         <div className="confirm-delete-content">
-                            <p>Are you sure you want to delete?</p>
+                            <p>Are you sure you want to delete this list?</p>
                             <button onClick={handleDeleteList}>Delete</button>
                             <button onClick={() => setIsDeletePopupOpen(false)}>Cancel</button>
                         </div>
                     </div>
                 }
-             </div>   
+             </div>
         </div>
     )
-
 }
 
 export default Dashboard;

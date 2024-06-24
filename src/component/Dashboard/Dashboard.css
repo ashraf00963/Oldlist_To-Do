@@ -104,6 +104,8 @@
 
 .confirm-delete-content p {
     margin-bottom: 20px;
+    font-size: 1.2rem;
+    font-weight: 800;
 }
 
 .confirm-delete-content button {
@@ -112,10 +114,18 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-family: "Josefin Sans", serif;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.confirm-delete-content button:hover {
+    background-color: #000;
+    color: #fff;
 }
 
 .confirm-delete-content button:first-of-type {
-    background-color: red;
+    background-color: #b80101;
     color: #fff;
 }
 
