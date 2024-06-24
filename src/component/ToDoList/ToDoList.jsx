@@ -4,11 +4,14 @@ import axios from "axios";
 import { v4 as uuidv4 } from 'uuid';
 import { TasksList, InProgressList, CompletedList, GarbageBin, CustomDragLayer } from './Circle';
 import './ToDoList.css';
+import Loading from "../LoadingSpinner/Loading";
 
 function ToDoList() {
     const { listId } = useParams();
     const [tasks, setTasks] = useState({ tasks: [], inProgress: [], completed: [] });
     const [listName, setListName] = useState('');
+    const [loading, setLoading] = useState(true);
+    const [movingTask, setMovingTask] = useState(false);
     const [error, setError] = useState(null);
 
     const userId = localStorage.getItem('userId');
@@ -36,6 +39,8 @@ function ToDoList() {
                 setError(null);
             } catch (error) {
                 setError(error.response?.data || 'Failed to fetch tasks from server');
+            } finally {
+                setLoading(false);
             }
         };
 
@@ -78,6 +83,8 @@ function ToDoList() {
     const moveTask = async (taskId, sourceStatus, targetStatus, targetIndex) => {
         const taskToMove = tasks[sourceStatus].find(task => task.id === taskId);
         const updatedTask = { ...taskToMove, status: targetStatus };
+
+        setMovingTask(true);
     
         try {
             await axios.put(`${URL}/updateTask.php`, {
@@ -101,6 +108,8 @@ function ToDoList() {
             setError(null);
         } catch (error) {
             setError(error.response?.data || 'Failed to update task status');
+        } finally {
+            setMovingTask(false);
         }
     };    
 
@@ -122,6 +131,8 @@ function ToDoList() {
 
     return (
         <div className="todolist-page">
+            {loading && <Loading />}
+            {movingTask && <Loading />}
             <h1>{listName}</h1>
             {error && <p className="error-p">{error}</p>}
             <div className="lists-container">

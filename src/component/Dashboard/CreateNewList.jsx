@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import axios from "axios";
+import cuid from 'cuid';
 import './CreateNewList.css';
 
 function NewListPopup({ isOpen, onClose, setLists, lists, error, setError }) {
@@ -39,15 +40,17 @@ function NewListPopup({ isOpen, onClose, setLists, lists, error, setError }) {
             return;
         }
 
+        // Generate unique ID using CUID
+        const listId = cuid();
         //initial list
         const newList = {
-            id: lists.length + 1,
+            id: listId,
             name: newListName,
             tasks: []
         };
 
         try {
-            const response = await axios.post(`${URL}/addList.php`, { user_id: userId, name: newListName });
+            const response = await axios.post(`${URL}/addList.php`, { user_id: userId, list_id: listId, name: newListName });
             setLists([...lists, response.data]);
             setNewListName('');
         } catch (error) {
@@ -66,6 +69,7 @@ function NewListPopup({ isOpen, onClose, setLists, lists, error, setError }) {
                         value={newListName}
                         className="newlistpopup-input"
                         onChange={(e) => setNewListName(e.target.value)}
+                        maxLength={30}
                         placeholder="List name"
                         required
                     />
