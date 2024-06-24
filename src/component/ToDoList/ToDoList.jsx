@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { TasksList, InProgressList, CompletedList, GarbageBin, CustomDragLayer } from './Circle';
 import './ToDoList.css';
 import Loading from "../LoadingSpinner/Loading";
-import backgroundVid from '../../assets/backgroundVid';
+import { backgroundVid } from "../../assets";
 
 function ToDoList() {
     const { listId } = useParams();
