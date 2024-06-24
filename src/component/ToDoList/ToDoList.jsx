@@ -137,7 +137,7 @@ function ToDoList() {
 
     return (
         <div className="todolist-page">
-            <video autoPlay muted loop className="Video-background">
+            <video autoPlay muted loop className="video-background">
                 <source src={backgroundVid} type="video/mp4" />
                 Your browser does not support the video.
             </video>
