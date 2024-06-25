@@ -50,6 +50,7 @@ function TaskModal({ task, isOpen, onClose, updateTaskInParent }) {
             setError(null);
             setIsEditing(false);
         } catch (error) {
+            console.log(error);
             setError(error.response?.data || 'Failed to update task');
         } finally {
             setLoading(false);
