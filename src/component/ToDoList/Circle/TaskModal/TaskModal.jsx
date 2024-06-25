@@ -41,6 +41,11 @@ function TaskModal({ task, isOpen, onClose, updateTaskInParent }) {
     };
 
     const handleUpdateClick = async () => {
+        if(editedNote === task.note) {
+            setIsEditing(false);
+            return;
+        }
+
         setLoading(true);
 
         try {
