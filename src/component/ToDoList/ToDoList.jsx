@@ -164,7 +164,7 @@ function ToDoList() {
             <h1>{listName}</h1>
             {error && <p className="error-p">{error}</p>}
             <div className="lists-container">
-                <TasksList tasks={tasks.tasks} moveTask={moveTask} addTask={handleAddTask} updateTask={updateTask} deleteTask={handleDeleteTask} onUpdate={handleUpdateTaskNote} />
+                <TasksList tasks={tasks.tasks} moveTask={moveTask} addTask={handleAddTask} updateTask={updateTask} deleteTask={handleDeleteTask} onUpdateTaskNote={handleUpdateTaskNote} />
                 <InProgressList tasks={tasks.inProgress} moveTask={moveTask} updateTask={updateTask} deleteTask={handleDeleteTask} />
                 <CompletedList tasks={tasks.completed} moveTask={moveTask} updateTask={updateTask} deleteTask={handleDeleteTask} />
             </div>

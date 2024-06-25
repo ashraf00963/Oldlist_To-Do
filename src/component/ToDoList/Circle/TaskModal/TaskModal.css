@@ -44,10 +44,10 @@
 
 .modal-content .edit-icon {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 15px;
+    right: 15px;
     cursor: pointer;
-    color: #fff;
+    color: #008000;
 }
 
 .modal-content button {
@@ -55,13 +55,15 @@
     margin-top: 10px;
     padding: 10px;
     width: 100%;
-    background-color: #ccc;
-    color: #000;
+    background-color: #2f4f4f;
+    color: #fff;
     border: none;
     border-radius: 4px;
+    font-family: "Josefin Sans", serif;
     cursor: pointer;
+    transition: all 0.2s;
 }
 
 .modal-content button:hover {
-    background-color: #686868;
+    background-color: #213a3a;
 }
