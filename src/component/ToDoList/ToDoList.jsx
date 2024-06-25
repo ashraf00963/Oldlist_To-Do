@@ -140,13 +140,22 @@ function ToDoList() {
         try {
             const response = await axios.put(`${URL}/updateTaskNote.php`, { id: taskId, note: newNote });
             const updatedTask = response.data;
+    
             setTasks((prevTasks) => {
                 const newState = { ...prevTasks };
-                newState[updatedTask.status] = newState[updatedTask.status].map(task =>
-                    task.id === taskId ? { ...task, note: newNote } : task
-                );
+    
+                // Find the task in the current state and update its note
+                for (const status in newState) {
+                    if (newState[status]) {
+                        newState[status] = newState[status].map(task =>
+                            task.id === taskId ? { ...task, note: newNote } : task
+                        );
+                    }
+                }
+    
                 return newState;
             });
+    
             setError(null);
         } catch (error) {
             setError(error.response?.data || 'Failed to update task');
