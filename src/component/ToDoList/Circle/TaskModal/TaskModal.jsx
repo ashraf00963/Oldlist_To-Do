@@ -44,13 +44,11 @@ function TaskModal({ task, isOpen, onClose, updateTaskInParent }) {
         setLoading(true);
 
         try {
-            const response = await axios.put(`${URL}/updateTaskNote.php`, { id: task.id, note: editedNote });
-            const updatedTask = response.data;
-            updateTaskInParent(updatedTask);
+            await axios.put(`${URL}/updateTaskNote.php`, { id: task.id, note: editedNote });
             setError(null);
             setIsEditing(false);
+            window.location.reload();
         } catch (error) {
-            console.log(error);
             setError(error.response?.data || 'Failed to update task');
         } finally {
             setLoading(false);

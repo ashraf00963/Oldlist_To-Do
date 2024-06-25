@@ -3,7 +3,7 @@ import Task from '../Task';
 import { useRef, useState, useEffect } from 'react';
 import './Tasks.css';
 
-function TasksList({ tasks, moveTask, addTask, updateTaskInParent }) {
+function TasksList({ tasks, moveTask, addTask }) {
     const [isAddTaskPopupOpen, setIsAddTaskPopupOpen] = useState(false);
     const [newTask, setNewTask] = useState('');
     const [note, setNote] = useState('');
@@ -54,7 +54,7 @@ function TasksList({ tasks, moveTask, addTask, updateTaskInParent }) {
                     <button className='tasklist-popup-btn' onClick={() => setIsAddTaskPopupOpen(true)}>+</button>
                 </div>
                 {tasks.map((task) => (
-                    <Task key={task.id} task={task} updateTaskInParent={updateTaskInParent} />
+                    <Task key={task.id} task={task} />
                 ))}
             </div>
             {isAddTaskPopupOpen &&

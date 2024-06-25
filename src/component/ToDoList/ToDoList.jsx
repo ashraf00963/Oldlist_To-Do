@@ -135,17 +135,6 @@ function ToDoList() {
         }
     };
 
-    // updates task when task note is updated from task modal
-    const updateTaskInParent = (updatedTask) => {
-        setTasks((prevTasks) => {
-            const newState = { ...prevTasks };
-            newState[updatedTask.status] = newState[updatedTask.status].map(task => 
-                task.id === updatedTask.id ? updatedTask : task
-            ) || [];
-            return newState;
-        })
-    }
-
     return (
         <div className="todolist-page">
             <video autoPlay muted loop className="video-background">
@@ -157,9 +146,9 @@ function ToDoList() {
             <h1>{listName}</h1>
             {error && <p className="error-p">{error}</p>}
             <div className="lists-container">
-                <TasksList tasks={tasks.tasks} moveTask={moveTask} addTask={handleAddTask} updateTask={updateTask} deleteTask={handleDeleteTask} updateTaskInParent={updateTaskInParent} />
-                <InProgressList tasks={tasks.inProgress} moveTask={moveTask} updateTask={updateTask} deleteTask={handleDeleteTask} updateTaskInParent={updateTaskInParent} />
-                <CompletedList tasks={tasks.completed} moveTask={moveTask} updateTask={updateTask} deleteTask={handleDeleteTask} updateTaskInParent={updateTaskInParent} />
+                <TasksList tasks={tasks.tasks} moveTask={moveTask} addTask={handleAddTask} updateTask={updateTask} deleteTask={handleDeleteTask} />
+                <InProgressList tasks={tasks.inProgress} moveTask={moveTask} updateTask={updateTask} deleteTask={handleDeleteTask} />
+                <CompletedList tasks={tasks.completed} moveTask={moveTask} updateTask={updateTask} deleteTask={handleDeleteTask} />
             </div>
             <GarbageBin deleteTask={handleDeleteTask} isDragging={isDragging} />
         </div>
