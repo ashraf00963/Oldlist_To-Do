@@ -13,6 +13,8 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    position: relative;
+    z-index: 1;
 }
 
 .intro-page-header h1 {
@@ -20,7 +22,7 @@
     text-shadow: -2px 4px 4px #000;
 }
 
-.intro-login-btn {
+.intro-register-btn {
     font-family: "Josefin Sans", serif;
     font-weight: 500;
     font-size: 20px;
@@ -33,11 +35,24 @@
     transition: all 0.3s;
 }
 
-.intro-login-btn:hover {
-    font-family: "Josefin Sans", serif;
-    font-weight: 600;
+.intro-register-btn:hover {
     color: #fff;
     background-color: #000;
+}
+
+.intro-login-btn {
+    background: transparent;
+    border: none;
+    margin-right: 1rem;
+    font-family: "Josefin Sans", serif;
+    font-size: 1rem;
+    color: #fff;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.intro-login-btn:hover {
+    color: #ccc;
 }
 
 .intro-content {
@@ -54,14 +69,16 @@
 }
 
 .intro-h2 {
-    font-size: 4rem;
+    font-size: 3.5rem;
     text-shadow: 0px 8px 4px #000;
     margin: 0.5rem;
+    margin-top: 4rem;
 }
 
 .intro-p {
     font-size: 2rem;
     text-shadow: -1px 4px 5px #000;
+    margin-bottom: 0;
 }
 
 .intro-content-list {

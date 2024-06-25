@@ -48,11 +48,11 @@ function Register({ isOpen, onClose, onLoginOpen }) {
         return strength;
     }
 
-    //when register is successful than after 2 secs open login popup
+    //when register is successful than after 1 secs open login popup
     const handleOpenLogin = () => {
         const timer = setTimeout(() => {
             onLoginOpen();
-        }, 2000);
+        }, 1000);
 
         //Clean up the timer if the component unmounts
         return () => clearTimeout(timer);
