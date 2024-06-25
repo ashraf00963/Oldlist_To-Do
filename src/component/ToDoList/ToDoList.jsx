@@ -140,22 +140,15 @@ function ToDoList() {
         try {
             const response = await axios.put(`${URL}/updateTaskNote.php`, { id: taskId, note: newNote });
             const updatedTask = response.data;
-    
             setTasks((prevTasks) => {
                 const newState = { ...prevTasks };
-    
-                // Find the task in the current state and update its note
                 for (const status in newState) {
-                    if (newState[status]) {
-                        newState[status] = newState[status].map(task =>
-                            task.id === taskId ? { ...task, note: newNote } : task
-                        );
-                    }
+                    newState[status] = newState[status].map(task =>
+                        task.id === taskId ? { ...task, note: newNote } : task
+                    );
                 }
-    
                 return newState;
             });
-    
             setError(null);
         } catch (error) {
             setError(error.response?.data || 'Failed to update task');
@@ -174,7 +167,7 @@ function ToDoList() {
             <h1>{listName}</h1>
             {error && <p className="error-p">{error}</p>}
             <div className="lists-container">
-                <TasksList tasks={tasks.tasks} moveTask={moveTask} addTask={handleAddTask} updateTask={updateTask} deleteTask={handleDeleteTask} onUpdateTaskNote={handleUpdateTaskNote} />
+                <TasksList tasks={tasks.tasks} moveTask={moveTask} addTask={handleAddTask} updateTask={updateTask} deleteTask={handleDeleteTask} onUpdate={handleUpdateTaskNote} />
                 <InProgressList tasks={tasks.inProgress} moveTask={moveTask} updateTask={updateTask} deleteTask={handleDeleteTask} />
                 <CompletedList tasks={tasks.completed} moveTask={moveTask} updateTask={updateTask} deleteTask={handleDeleteTask} />
             </div>
