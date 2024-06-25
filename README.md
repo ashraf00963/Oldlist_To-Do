@@ -1,3 +1,5 @@
+<img src="src/assets/logo-to-do.png" alt="List To Do Logo" width="200">
+
 # To-Do List Application
 
 ## Project Description
