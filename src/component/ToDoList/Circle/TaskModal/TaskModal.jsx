@@ -46,7 +46,6 @@ function TaskModal({ task, isOpen, onClose, updateTaskInParent }) {
         try {
             const response = await axios.put(`${URL}/updateTaskNote.php`, { id: task.id, note: editedNote });
             const updatedTask = response.data;
-            setEditedNote(updatedTask.note);
             updateTaskInParent(updatedTask);
             setError(null);
             setIsEditing(false);
