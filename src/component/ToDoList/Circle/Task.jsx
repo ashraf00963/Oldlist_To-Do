@@ -3,7 +3,7 @@ import { useState } from 'react';
 import TaskModal from './TaskModal/TaskModal';
 import './Task.css';
 
-function Task({ task }) {
+function Task({ task, updateTaskinParent }) {
     // Handles Drag Task
     const [{ isDragging }, drag] = useDrag(() => ({
         type: 'TASK',
@@ -49,7 +49,7 @@ function Task({ task }) {
                     </div>
                 )}
             </div>
-            <TaskModal task={task} isOpen={isModalOpen} onClose={handleCloseModal} />
+            <TaskModal task={task} isOpen={isModalOpen} onClose={handleCloseModal} updateTaskinParent={updateTaskinParent} />
         </>
     );
 }

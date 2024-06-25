@@ -4,7 +4,7 @@ import './TaskModal.css';
 import axios from 'axios';
 import Loading from '../../../LoadingSpinner/Loading';
 
-function TaskModal({ task, isOpen, onClose }) {
+function TaskModal({ task, isOpen, onClose, updateTaskInParent }) {
     const modalRef = useRef(null);
     const [isEditing, setIsEditing] = useState(false);
     const [editedNote, setEditedNote] = useState(task.note);
@@ -47,6 +47,7 @@ function TaskModal({ task, isOpen, onClose }) {
             const response = await axios.put(`${URL}/updateTaskNote.php`, { id: task.id, note: editedNote });
             const updatedTask = response.data;
             setEditedNote(updatedTask.note);
+            updateTaskInParent(updatedTask);
             setError(null);
             setIsEditing(false);
         } catch (error) {
