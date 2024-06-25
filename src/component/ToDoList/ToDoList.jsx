@@ -139,7 +139,9 @@ function ToDoList() {
     const updateTaskInParent = (updatedTask) => {
         setTasks((prevTasks) => {
             const newState = { ...prevTasks };
-            newState[updatedTask.status] = newState[updatedTask.status].map(task => task.id === updatedTask.id ? updatedTask : task);
+            newState[updatedTask.status] = newState[updatedTask.status].map(task => 
+                task.id === updatedTask.id ? updatedTask : task
+            ) || [];
             return newState;
         })
     }
