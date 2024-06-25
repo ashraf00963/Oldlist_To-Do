@@ -1,11 +1,17 @@
 import { useRef, useEffect, useState } from 'react';
 import { MdModeEdit } from "react-icons/md";
 import './TaskModal.css';
+import axios from 'axios';
+import Loading from '../../../LoadingSpinner/Loading';
 
-function TaskModal({ task, isOpen, onClose, onUpdate }) {
+function TaskModal({ task, isOpen, onClose }) {
     const modalRef = useRef(null);
     const [isEditing, setIsEditing] = useState(false);
     const [editedNote, setEditedNote] = useState(task.note);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+
+    const URL = 'https://list-todo.com';
 
     // handles the click out side to close popup
     useEffect(() => {
@@ -34,9 +40,20 @@ function TaskModal({ task, isOpen, onClose, onUpdate }) {
         setIsEditing(true);
     };
 
-    const handleUpdateClick = () => {
-        onUpdate(task.id, editedNote);
-        setIsEditing(false);
+    const handleUpdateClick = async () => {
+        setLoading(true);
+
+        try {
+            const response = await axios.put(`${URL}/updateTaskNote.php`, { id: task.id, note: editedNote });
+            const updatedTask = response.data;
+            setEditedNote(updatedTask.note);
+            setError(null);
+            setIsEditing(false);
+        } catch (error) {
+            setError(error.response?.data || 'Failed to update task');
+        } finally {
+            setLoading(false);
+        }
     };
 
     if (!isOpen) return null;
@@ -45,6 +62,7 @@ function TaskModal({ task, isOpen, onClose, onUpdate }) {
         <div className="modal-overlay">
             <div className="modal-content" ref={modalRef}>
                 <h2>{task.name}</h2>
+                {error && <p className='error-p'>{error}</p>}
                 {isEditing ? (
                     <textarea
                         value={editedNote}
@@ -58,6 +76,7 @@ function TaskModal({ task, isOpen, onClose, onUpdate }) {
                         placeholder='No notes available'
                     />
                 )}
+                {loading && <Loading />}
                 {isEditing ? (
                     <button onClick={handleUpdateClick}>update</button>
                 ) : (
