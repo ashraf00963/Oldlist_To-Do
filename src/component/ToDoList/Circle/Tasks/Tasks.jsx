@@ -67,7 +67,7 @@ function TasksList({ tasks, moveTask, addTask }) {
                                 value={newTask}
                                 className='addtask-popup-input'
                                 onChange={(e) => setNewTask(e.target.value)}
-                                maxLength={25}
+                                maxLength={30}
                                 placeholder='Task Name'
                                 required
                             />
